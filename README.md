@@ -36,11 +36,11 @@ dependency "sg" {
 
 inputs = {
   enabled                 = false
-  subnet_ids              = ["subnet-0ece5975ca259796e", "subnet-084c56f1fd8699660"]
+  subnet_ids              = ["subnet-xxxxxxxxx", "subnet-xxxxxxx"]
   allocated_storage       = "30"
   max_allocated_storage   = "50"
   engine                  = "sqlserver-se" # change to sqlserver-ee to install enterprise version
-  identifier              = "khalid-rds-test-dlp"
+  identifier              = "rds-test-dlp"
   engine_version          = "15.00.4073.23.v1"
   instance_class          = "db.m5.2xlarge"
   secret_manager_name     = "secret-manager-rds-test-kk-dlpk"
