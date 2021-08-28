@@ -59,3 +59,9 @@ inputs = {
   }
 
 }
+
+terraform {
+     source = "git::https://git@github.com/ucopacme/terraform-aws-rds-sql.git"
+
+
+}
