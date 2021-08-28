@@ -1,11 +1,11 @@
 # terraform-aws-assume-role
-Terraform module which creates IAM Role  and IAM Policy resources on AWS
+Terraform module which creates RDS SQL server resources on AWS
 
 
 
 -->
 
-Terraform module to provision AWS [`IAM Assume Role`]
+Terraform module to provision AWS [`RDS SQL server`]
 
 
 
@@ -13,7 +13,7 @@ Terraform module to provision AWS [`IAM Assume Role`]
 
 The module will create:
 
-* IAM assume role 
+* RDS SQL server 
 
 
 
@@ -29,29 +29,33 @@ include {
   path = find_in_parent_folders()
 }
 
+
+dependency "sg" {
+  config_path = "../sg-test"
+}
+
 inputs = {
-  enabled               = true # set this to false to destory the resource
-  name                  = "kk-test-role"
-  assume_role_policy    = local.assume_role_policy
-  policy                = local.policy
-  description           = "IAM rule for DataDage"
-  max_session_duration  = "3600" # by default it is set to 3600 too
-  force_detach_policies = false  # by default it is set to false too
+  enabled                 = false
+  subnet_ids              = ["subnet-0ece5975ca259796e", "subnet-084c56f1fd8699660"]
+  allocated_storage       = "30"
+  max_allocated_storage   = "50"
+  engine                  = "sqlserver-se" # change to sqlserver-ee to install enterprise version
+  identifier              = "khalid-rds-test-dlp"
+  engine_version          = "15.00.4073.23.v1"
+  instance_class          = "db.m5.2xlarge"
+  secret_manager_name     = "secret-manager-rds-test-kk-dlpk"
+  publicly_accessible     = true
+  deletion_protection     = false
+  apply_immediately       = true
+  backup_retention_period = "14"
+  vpc_security_group_ids  = [dependency.sg.outputs.id]
+  license_model = "license-included"
   tags = {
-    "ucop:application" = "test"
-    "ucop:createdBy"   = "terraform"
-    "ucop:enviroment"  = "test"
-    "ucop:group"       = "test"
-    "ucop:source"      = local.source
+    "ucop:application" = "DLP"
+    "ucop:createdBy"   = "Terraform"
+    "ucop:enviroment"  = "Prod"
+    "ucop:group"       = "CHS"
+    "ucop:source"      = join("/", ["https://github.com/ucopacme/ucop-terraform-config/tree/master/terraform/its-chs-dev/us-west-2", path_relative_to_include()])
   }
-}
 
-locals {
-  policy             = jsondecode(file("./policy.json"))
-  assume_role_policy = jsondecode(file("./assume_policy.json"))
-  source             = join("/", ["https://github.com/ucopacme/ucop-terraform-config/tree/master/terraform/its-chs-dev/us-west-2", path_relative_to_include()])
-}
-
-terraform {
-  source = "git::https://git@github.com/ucopacme/terraform-aws-assume-role.git?ref=v0.0.1"
 }
