@@ -1,4 +1,4 @@
-# terraform-aws-assume-role
+# terraform-aws-rds-sql
 Terraform module which creates RDS SQL server resources on AWS
 
 
