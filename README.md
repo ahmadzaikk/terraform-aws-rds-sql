@@ -35,7 +35,7 @@ dependency "sg" {
 }
 
 inputs = {
-  enabled                 = false
+  enabled                 = true
   subnet_ids              = ["subnet-xxxxxxxxx", "subnet-xxxxxxx"]
   allocated_storage       = "30"
   max_allocated_storage   = "50"
