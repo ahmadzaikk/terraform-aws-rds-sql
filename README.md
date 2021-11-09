@@ -53,7 +53,7 @@ inputs = {
   tags = {
     "ucop:application" = "DLP"
     "ucop:createdBy"   = "Terraform"
-    "ucop:enviroment"  = "Prod"
+    "ucop:environment"  = "Prod"
     "ucop:group"       = "CHS"
     "ucop:source"      = join("/", ["https://github.com/ucopacme/ucop-terraform-config/tree/master/terraform/its-chs-dev/us-west-2", path_relative_to_include()])
   }
