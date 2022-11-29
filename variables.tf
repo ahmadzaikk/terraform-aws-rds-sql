@@ -21,6 +21,11 @@ variable "enabled" {
   description = "Set to `false` to prevent the module from creating any resources"
   type        = bool
 }
+variable "enabled_cloudwatch_logs_exports" {
+  description = "List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine): alert, audit, error, general, listener, slowquery, trace, postgresql (PostgreSQL), upgrade (PostgreSQL)."
+  type        = list(string)
+  default     = []
+}
 variable "skip_final_snapshot" {
   default     = true
   description = "Set to `false` to skip_final_snapshot"
