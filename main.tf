@@ -15,6 +15,7 @@ resource "aws_db_instance" "this" {
   character_set_name            = var.character_set_name
   engine                        = var.engine 
   engine_version                = var.engine_version
+  enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
   identifier                    = var.identifier
   instance_class                = var.instance_class
   username                      = local.sso_secrets.username
