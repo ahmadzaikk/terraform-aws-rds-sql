@@ -3,7 +3,11 @@ variable "password" {
   type        = string
   default     = ""
 }
-
+variable "copy_tags_to_snapshot" {
+  description = "copy all Instance tags to the final snapshot"
+  type        = bool
+  default     = true
+}
 variable "secret_id" {
   description = "secret id"
   type        = string
