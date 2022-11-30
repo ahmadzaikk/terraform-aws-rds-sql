@@ -27,6 +27,7 @@ resource "aws_db_instance" "this" {
   publicly_accessible           = var.publicly_accessible
   apply_immediately             = var.apply_immediately
   license_model                 = var.license_model
+  option_group_name             = var.option_group_name
   port                          = var.port
   parameter_group_name          = var.parameter_group_name
   performance_insights_enabled  = var.performance_insights_enabled
