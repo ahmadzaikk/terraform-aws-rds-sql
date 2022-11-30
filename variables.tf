@@ -140,7 +140,9 @@ variable "character_set_name" {
 variable "parameter_group_name" {
   default = "default.sqlserver-se-15.0"
 }
-
+variable "option_group_name" {
+  default = ""
+}
 
 variable "multi_az" {
   default = false
