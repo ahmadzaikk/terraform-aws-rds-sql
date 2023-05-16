@@ -40,6 +40,11 @@ variable "storage_encrypted" {
   description = "Set to `false` to not encrypt the storage"
   type        = bool
 }
+variable "storage_type" {
+  default     = "gp3"
+  description = "gp2, gp3 (default), or io1."
+  type        = string
+}
 variable "publicly_accessible" {
   default     = false
   description = "Set to `false` to prevent Database accessibility"
@@ -74,7 +79,7 @@ variable "db_subnet_group_name" {
 }
 variable "engine" {
   default     = "sqlserver-se"
-  description = "Specify engin name"
+  description = "Specify engine name"
   type        = string
 }
 variable "identifier" {
