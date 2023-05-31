@@ -109,25 +109,21 @@ variable "subnet_ids" {
   type        = list(string)
   description = "List of subnets"
   default     = []
-
 }
 
 variable "secret_manager_name" {
   type = string
   description = " secret manager name"
   default = ""
-  
 }
 
  variable "max_allocated_storage" {
-  type = string 
+  type = string
   description = "Max allocate storage"
   default = null
-  
- } 
+}
 #  variable "family" {
 #   default = "sqlserver-se-15.0"
-  
 # }
  variable "license_model" {
   description = "One of license-included, bring-your-own-license, general-public-license"
@@ -196,4 +192,9 @@ variable "monitoring_interval" {
   description = "The interval (seconds) between points when Enhanced Monitoring metrics are collected"
   type        = number
   default     = 0
+}
+variable "snapshot_identifier" {
+  type = string
+  description = "snapshot_identifier id"
+  default = null
 }
