@@ -18,10 +18,6 @@ output "rds_kms_key_id" {
   value = join("", aws_db_instance.this.*.kms_key_id)
 }
 
-output "rds_identifier" {
-  value = join("", aws_db_instance.this.*.identifier)
-}
-
 output "db_subnet_group" {
   value = join("", aws_db_subnet_group.this.*.id)
 }
