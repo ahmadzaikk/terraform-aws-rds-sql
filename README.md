@@ -14,11 +14,12 @@ Terraform module to provision AWS [`RDS SQL server`]
 The module will create:
 
 * RDS SQL server 
+* Customer-managed KMS key for storage encryption (optional)
 
 
 
 ## Usage
-1. Create terragrunt.hcl config file and past the following configuration.
+1. Create terragrunt.hcl config file and paste/customize the following configuration.
 2. Create your policies and save it under the same directory that your HCL file is located.
 
 ```hcl
@@ -61,7 +62,7 @@ inputs = {
 }
 
 terraform {
-     source = "git::https://git@github.com/ucopacme/terraform-aws-rds-sql.git?ref=v0.0.1"
+     source = "git::https://git@github.com/ucopacme/terraform-aws-rds-sql.git?ref=v0.0.7"
 
 
 }
