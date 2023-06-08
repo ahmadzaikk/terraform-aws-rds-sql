@@ -15,7 +15,7 @@ resource "aws_db_instance" "this" {
   deletion_protection           = var.deletion_protection
   db_subnet_group_name          = aws_db_subnet_group.this.*.id[0]
   character_set_name            = var.character_set_name
-  engine                        = var.engine 
+  engine                        = var.engine
   engine_version                = var.engine_version
   enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
   identifier                    = var.identifier
@@ -67,7 +67,7 @@ resource "random_password" "password" {
 }
 
 
-# create secret and secret versions for database master account 
+# create secret and secret versions for database master account
 
 resource "aws_secretsmanager_secret" "this" {
   name                          = var.secret_manager_name

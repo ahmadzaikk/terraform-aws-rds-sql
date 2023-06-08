@@ -14,10 +14,17 @@ output "rds_address" {
   value = join("", aws_db_instance.this.*.address)
 }
 
+output "rds_kms_key_id" {
+  value = join("", aws_db_instance.this.*.kms_key_id)
+}
+
+output "rds_identifier" {
+  value = join("", aws_db_instance.this.*.identifier)
+}
+
 output "db_subnet_group" {
   value = join("", aws_db_subnet_group.this.*.id)
 }
-
 
 output "id" {
   description = "[secret id](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/secretsmanager_secret#id)"
