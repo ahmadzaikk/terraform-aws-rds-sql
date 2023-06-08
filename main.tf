@@ -123,7 +123,7 @@ data "aws_iam_policy_document" "this" {
 
     principals {
       type        = "AWS"
-      identifiers = [for account_id in concat(data.aws_caller_identity.this.account_id, var.cmk_allowed_aws_account_ids) : "arn:aws:iam::${account_id}:root"]
+      identifiers = [for account_id in concat([data.aws_caller_identity.this.account_id], var.cmk_allowed_aws_account_ids) : "arn:aws:iam::${account_id}:root"]
     }
   }
 
@@ -146,7 +146,7 @@ data "aws_iam_policy_document" "this" {
 
     principals {
       type        = "AWS"
-      identifiers = [for account_id in concat(data.aws_caller_identity.this.account_id, var.cmk_allowed_aws_account_ids) : "arn:aws:iam::${account_id}:root"]
+      identifiers = [for account_id in concat([data.aws_caller_identity.this.account_id], var.cmk_allowed_aws_account_ids) : "arn:aws:iam::${account_id}:root"]
     }
   }
 }
