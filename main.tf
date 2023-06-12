@@ -26,6 +26,7 @@ resource "aws_db_instance" "this" {
   storage_encrypted               = var.storage_encrypted
   kms_key_id                      = var.create_cmk ? aws_kms_key.this.*.arn[0] : var.kms_key_id
   storage_type                    = var.storage_type
+  iops                            = var.storage_type == "gp2" ? null : var.iops
   snapshot_identifier             = var.snapshot_identifier
   domain                          = var.domain
   domain_iam_role_name            = var.domain_iam_role_name
