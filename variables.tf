@@ -132,34 +132,34 @@ variable "subnet_ids" {
 }
 
 variable "secret_manager_name" {
-  type = string
+  type        = string
   description = " secret manager name"
-  default = ""
+  default     = ""
 }
 
- variable "max_allocated_storage" {
-  type = string
+variable "max_allocated_storage" {
+  type        = string
   description = "Max allocate storage"
-  default = null
+  default     = null
 }
 #  variable "family" {
 #   default = "sqlserver-se-15.0"
 # }
- variable "license_model" {
+variable "license_model" {
   description = "One of license-included, bring-your-own-license, general-public-license"
-  default = "license-included"
+  default     = "license-included"
 }
 
 variable "port" {
   description = "The port on which to accept connections"
-  type = string
-  default = "1433"
+  type        = string
+  default     = "1433"
 }
 
 variable "character_set_name" {
   description = "SQL Server collation to use"
-  type = string
-  default = "SQL_Latin1_General_CP1_CI_AS"
+  type        = string
+  default     = "SQL_Latin1_General_CP1_CI_AS"
 }
 
 variable "parameter_group_name" {
@@ -183,8 +183,8 @@ variable "backup_window" {
 }
 variable "maintenance_window" {
   description = "When to perform DB maintenance"
-  type = string
-  default = "sun:05:00-sun:06:00"
+  type        = string
+  default     = "sun:05:00-sun:06:00"
 }
 variable "allow_major_version_upgrade" {
   default = false
@@ -214,7 +214,17 @@ variable "monitoring_interval" {
   default     = 0
 }
 variable "snapshot_identifier" {
-  type = string
+  type        = string
   description = "snapshot_identifier id"
-  default = null
+  default     = null
+}
+variable "domain" {
+  type        = string
+  description = "(Optional) The ID of the Directory Service Active Directory domain to create the instance in"
+  default     = null
+}
+variable "domain_iam_role_name" {
+  type        = string
+  description = "The name of the IAM role to be used when making API calls to the Directory Service"
+  default     = null
 }
