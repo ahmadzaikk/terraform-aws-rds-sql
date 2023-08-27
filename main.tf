@@ -11,6 +11,7 @@ resource "aws_db_instance" "this" {
   monitoring_interval             = var.monitoring_interval
   backup_retention_period         = var.backup_retention_period
   backup_window                   = var.backup_window
+  ca_cert_identifier              = var.ca_cert_identifier
   copy_tags_to_snapshot           = var.copy_tags_to_snapshot
   deletion_protection             = var.deletion_protection
   db_subnet_group_name            = aws_db_subnet_group.this.*.id[0]
