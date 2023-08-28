@@ -62,7 +62,7 @@ inputs = {
 }
 
 terraform {
-     source = "git::https://git@github.com/ucopacme/terraform-aws-rds-sql.git?ref=v0.0.7"
+     source = "git::https://git@github.com/ucopacme/terraform-aws-rds-sql.git?ref=v0.0.8"
 
 
 }
