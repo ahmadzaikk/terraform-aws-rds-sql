@@ -21,8 +21,9 @@ resource "aws_db_instance" "this" {
   enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
   identifier                      = var.identifier
   instance_class                  = var.instance_class
-  username                        = local.sso_secrets.username
-  password                        = local.sso_secrets.password
+  manage_master_user_password     = var.manage_master_user_password
+  username                        = var.username
+  password                        = var.manage_master_user_password ? null : jsondecode(aws_secretsmanager_secret_version.this[0].secret_string)["password"]
   skip_final_snapshot             = var.skip_final_snapshot
   storage_encrypted               = var.storage_encrypted
   kms_key_id                      = var.create_cmk ? aws_kms_key.this.*.arn[0] : var.kms_key_id
@@ -44,13 +45,6 @@ resource "aws_db_instance" "this" {
   multi_az                        = var.multi_az
   timezone                        = var.timezone
   final_snapshot_identifier       = var.final_snapshot_identifier_prefix
-
-  depends_on = [
-    aws_db_subnet_group.this,
-    aws_secretsmanager_secret.this,
-    aws_secretsmanager_secret_version.this,
-    aws_kms_key.this
-  ]
 }
 
 # create db subnet group
@@ -75,16 +69,18 @@ resource "random_password" "password" {
 # create secret and secret versions for database master account
 
 resource "aws_secretsmanager_secret" "this" {
+  count                   = var.manage_master_user_password ? 0 : 1
   name                    = var.secret_manager_name
   recovery_window_in_days = 7
   tags                    = var.tags
 }
 
 resource "aws_secretsmanager_secret_version" "this" {
-  secret_id     = aws_secretsmanager_secret.this.id
+  count         = var.manage_master_user_password ? 0 : 1
+  secret_id     = aws_secretsmanager_secret.this[0].id
   secret_string = <<EOF
    {
-    "username": "admin",
+    "username": "${var.username}",
     "password": "${random_password.password.result}"
    }
 EOF
