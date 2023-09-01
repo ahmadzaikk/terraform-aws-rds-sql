@@ -88,6 +88,9 @@ resource "aws_secretsmanager_secret_version" "this" {
     "password": "${random_password.password.result}"
    }
 EOF
+  lifecycle {
+    ignore_changes = [secret_string]
+  }
 }
 
 resource "aws_kms_key" "this" {
