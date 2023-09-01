@@ -21,7 +21,7 @@ resource "aws_db_instance" "this" {
   enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
   identifier                      = var.identifier
   instance_class                  = var.instance_class
-  manage_master_user_password     = var.manage_master_user_password
+  manage_master_user_password     = var.manage_master_user_password ? true : null
   username                        = var.username
   password                        = var.manage_master_user_password ? null : jsondecode(aws_secretsmanager_secret_version.this[0].secret_string)["password"]
   skip_final_snapshot             = var.skip_final_snapshot
