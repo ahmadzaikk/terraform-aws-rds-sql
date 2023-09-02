@@ -8,11 +8,6 @@ variable "copy_tags_to_snapshot" {
   type        = bool
   default     = true
 }
-variable "secret_id" {
-  description = "secret id"
-  type        = string
-  default     = ""
-}
 
 variable "vpc_security_group_ids" {
   description = "List of VPC security groups to associate"
