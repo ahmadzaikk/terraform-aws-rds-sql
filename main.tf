@@ -45,6 +45,12 @@ resource "aws_db_instance" "this" {
   multi_az                        = var.multi_az
   timezone                        = var.timezone
   final_snapshot_identifier       = var.final_snapshot_identifier_prefix
+  scaling_configuration {
+    auto_pause               = true
+    min_capacity             = 2
+    max_capacity             = 8
+    seconds_until_auto_pause = 300
+  }
 }
 
 # create db subnet group
